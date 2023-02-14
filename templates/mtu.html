@@ -1,0 +1,46 @@
+
+{% extends "masterPage.html" %}
+
+{% block content %}
+
+    <div class="section">
+        <div class="flex-center-vertical">
+            <h1>MTU of Devices</h1>
+        </div>
+    </div>
+    <div class="section">
+        <div class="responsive-table">
+            <table class="table table--lined table--selectable table">
+                <thead>
+                    <tr>
+                        <th>Device</th>
+                        <th>Product</th>
+                        <th>Device Mode</th>
+                        <th>IP Address</th>
+                        <th>Current MTU size</th>
+                        <th>Update MTU size</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <form method="post">
+                    {% for device in devices %}
+                    <tr>
+                      <td>{{ device.displayName }}</td>
+                      <td>{{ device.product }}</td>
+                      <td>{{ device.mode }}</td>
+                      <td>{{ device.ip }}</td>
+                      <td>{{ device.mtu }}</td>
+                      <td>
+                        <input type="text" id="{{ device.id }}" name="{{ device.id }}">
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    <button class="btn btn-primary" type="submit">Apply Changes</button>
+                  </form>
+                </tbody>
+            </table>
+        </div>
+        <br>
+    </div>
+
+{%  endblock %}
